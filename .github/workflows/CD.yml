@@ -52,6 +52,7 @@ jobs:
             github: gamelly/core-native-gba
             command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@native -DFPS_MODE=0 && make -C build"
             command2: sudo mv build/bin/game.gba template_native_fps0.gba
+            artifact: template_native_fps0.gba
           - name: Template GBA Native FPS 1
             github: gamelly/core-native-gba
             command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@native -DFPS_MODE=1 && make -C build"
@@ -76,6 +77,7 @@ jobs:
             github: gamelly/core-native-gba
             command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@love -DFPS_MODE=0 && make -C build"
             command2: sudo mv build/bin/game.gba template_love_fps0.gba
+            artifact: template_love_fps0.gba
           - name: Template GBA Love FPS 1
             github: gamelly/core-native-gba
             command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@love -DFPS_MODE=1 && make -C build"
