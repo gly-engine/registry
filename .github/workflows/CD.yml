@@ -20,17 +20,92 @@ jobs:
     name: build (${{ matrix.file.name }})
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 4
       matrix:
         file:
-          - name: template_gba
+          - name: Template GBA Lite FPS 0
             github: gamelly/core-native-gba
-            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. && make -C build"
-            artifact: build/bin/game.gba
-          - name: cli_lua
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@lite -DFPS_MODE=0 && make -C build"
+            command2: mv build/bin/game.gba template_lite_fps0.gba
+          - name: Template GBA Lite FPS 1
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@lite -DFPS_MODE=1 && make -C build"
+            command2: mv build/bin/game.gba template_lite_fps1.gba
+            artifact: template_lite_fps1.gba
+          - name: Template GBA Lite FPS 2
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@lite -DFPS_MODE=2 && make -C build"
+            command2: mv build/bin/game.gba template_lite_fps2.gba
+            artifact: template_lite_fps2.gba
+          - name: Template GBA Lite FPS 3
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@lite -DFPS_MODE=3 && make -C build"
+            command2: mv build/bin/game.gba template_lite_fps3.gba
+            artifact: template_lite_fps1.gba
+          - name: Template GBA Lite FPS 4
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@lite -DFPS_MODE=4 && make -C build"
+            command2: mv build/bin/game.gba template_lite_fps4.gba
+            artifact: template_lite_fps4.gba
+          - name: Template GBA Native FPS 0
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@native -DFPS_MODE=0 && make -C build"
+            command2: mv build/bin/game.gba template_native_fps0.gba
+          - name: Template GBA Native FPS 1
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@native -DFPS_MODE=1 && make -C build"
+            command2: mv build/bin/game.gba template_native_fps1.gba
+            artifact: template_native_fps1.gba
+          - name: Template GBA Native FPS 2
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@native -DFPS_MODE=2 && make -C build"
+            command2: mv build/bin/game.gba template_native_fps2.gba
+            artifact: template_native_fps2.gba
+          - name: Template GBA Native FPS 3
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@native -DFPS_MODE=3 && make -C build"
+            command2: mv build/bin/game.gba template_native_fps3.gba
+            artifact: template_native_fps1.gba
+          - name: Template GBA Native FPS 4
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@native -DFPS_MODE=4 && make -C build"
+            command2: mv build/bin/game.gba template_native_fps4.gba
+            artifact: template_native_fps4.gba
+          - name: Template GBA Love FPS 0
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@love -DFPS_MODE=0 && make -C build"
+            command2: mv build/bin/game.gba template_love_fps0.gba
+          - name: Template GBA Love FPS 1
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@love -DFPS_MODE=1 && make -C build"
+            command2: mv build/bin/game.gba template_love_fps1.gba
+            artifact: template_love_fps1.gba
+          - name: Template GBA Love FPS 2
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@love -DFPS_MODE=2 && make -C build"
+            command2: mv build/bin/game.gba template_love_fps2.gba
+            artifact: template_love_fps2.gba
+          - name: Template GBA Love FPS 3
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@love -DFPS_MODE=3 && make -C build"
+            command2: mv build/bin/game.gba template_love_fps3.gba
+            artifact: template_love_fps1.gba
+          - name: Template GBA Love FPS 4
+            github: gamelly/core-native-gba
+            command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@love -DFPS_MODE=4 && make -C build"
+            command2: mv build/bin/game.gba template_love_fps4.gba
+            artifact: template_love_fps4.gba
+          - name: Cli Gly
             lua: true
             github: gamelly/gly-engine
             command: ./cli.sh cli-build
             artifact: dist/cli.lua
+          - name: Cli Bundler
+            lua: true
+            github: gamelly/gly-engine
+            command: ./cli.sh bundler packages/lua_bundler/main.lua
+            command2: mv dist/main.lua dist/bundler.lua
+            artifact: dist/bundler.lua
     steps:
       - 
         uses: actions/checkout@master
@@ -44,6 +119,9 @@ jobs:
           luaVersion: '5.4'
       - 
         run: ${{ matrix.file.command }}
+      - 
+        if: ${{ matrix.file.command2 }}
+        run: ${{ matrix.file.command2 }}
       -
         uses: actions/upload-artifact@v3
         with:
@@ -55,6 +133,8 @@ jobs:
     needs: build
     steps:
       -
+        uses: actions/checkout@master
+      -
         uses: actions/download-artifact@v3
         with:
           path: artifacts
@@ -62,6 +142,9 @@ jobs:
         run: |
           mkdir -p dist
           find artifacts -type f -exec mv {} dist \;
+      -
+        run: |
+          node index.js
       -
         uses: actions/upload-pages-artifact@v2
         with:
