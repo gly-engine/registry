@@ -27,6 +27,7 @@ jobs:
             github: gamelly/core-native-gba
             command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@lite -DFPS_MODE=0 && make -C build"
             command2: sudo mv build/bin/game.gba template_lite_fps0.gba
+            artifact: template_lite_fps0.gba
           - name: Template GBA Lite FPS 1
             github: gamelly/core-native-gba
             command: docker run --rm -v $(pwd):/app -w /app devkitpro/devkitarm bash -c "cmake -Bbuild -H. -DENGINE=@lite -DFPS_MODE=1 && make -C build"
