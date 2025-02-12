@@ -34,48 +34,34 @@ jobs:
             command: lua tools/cd_lua_bundler.lua
             artifact: dist/bundler.lua
     steps:
-      - 
-        uses: actions/checkout@master
+      - uses: actions/checkout@v4
         with:
           repository: ${{ matrix.file.github }}
           ref: main
-      -
-        if: ${{ matrix.file.lua }}
+      - if: ${{ matrix.file.lua }}
         uses: leafo/gh-actions-lua@v10
         with:
           luaVersion: '5.4'
-      - 
-        run: ${{ matrix.file.command }}
-      - 
-        if: ${{ matrix.file.command2 }}
+      - run: ${{ matrix.file.command }}
+      - if: ${{ matrix.file.command2 }}
         run: ${{ matrix.file.command2 }}
-      -
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.file.name }}-artifact
+          name: built-artifacts
           path: ${{ matrix.file.artifact }}
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      -
-        uses: actions/checkout@master
-      -
-        uses: actions/download-artifact@v4
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          path: artifacts
-      -
-        run: |
-          mkdir -p dist
-          find artifacts -type f -exec mv {} dist \;
-      -
-        run: |
-          node index.js
-      -
-        uses: actions/upload-pages-artifact@v3
+          name: built-artifacts
+          path: dist
+      - run: node index.js
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-      - 
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v3
