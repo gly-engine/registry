@@ -47,7 +47,7 @@ jobs:
             command: bash -c "cmake -Bbuild -H. && make -C build && mv build/bin/game.nds dist/core-native-nds.nds"
           - 
             repo: core-native-ps1
-            command: cmake -Bbuild -H. && make -C build && mv build/game.elf dist/core-native-ps1.elf
+            command: cmake -Bbuild -H. -DGAME_BYTECODE=off && make -C build && mv build/game.elf dist/core-native-ps1.elf
     steps:
       -
         uses: actions/checkout@v4
