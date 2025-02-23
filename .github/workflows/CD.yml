@@ -45,9 +45,9 @@ jobs:
             repo: core-native-nds
             docker: "devkitpro/devkitarm:20240906"
             command: bash -c "cmake -Bbuild -H. && make -C build && mv build/bin/game.nds dist/core-native-nds.nds"
-#         - 
-#            repo: core-native-ps1
-#            command: sudo apt-get -y install gcc-multilib --no-install-recommends && (sudo -Bbuild -H. || find vendor/engine) && make -C build && mv build/game.elf dist/core-native-ps1.elf
+          - 
+            repo: core-native-ps1
+            command: cmake -Bbuild -H. && make -C build && mv build/game.elf dist/core-native-ps1.elf
     steps:
       -
         uses: actions/checkout@v4
