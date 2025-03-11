@@ -38,9 +38,15 @@ jobs:
             lua: true
             command: ./cli.sh bundler src/lib/cli/bundler.lua
           - 
+            name: 30 fps
             repo: core-native-gba
             docker: "devkitpro/devkitarm:20240906"
-            command: bash -c "cmake -Bbuild -H. && make -C build && mv build/bin/game.gba dist/core-native-gba.gba"
+            command: bash -c "cmake -Bbuild -H. -DFPS_MODE=2 && make -C build && mv build/bin/game.gba dist/core-native-gba-30fps.gba"
+          - 
+            name: 20 fps
+            repo: core-native-gba
+            docker: "devkitpro/devkitarm:20240906"
+            command: bash -c "cmake -Bbuild -H. -DFPS_MODE=3 && make -C build && mv build/bin/game.gba dist/core-native-gba-20fps.gba"
           - 
             repo: core-native-nds
             docker: "devkitpro/devkitarm:20240906"
