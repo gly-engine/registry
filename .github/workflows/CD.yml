@@ -38,6 +38,10 @@ jobs:
             lua: true
             command: ./cli.sh bundler src/lib/cli/bundler.lua
           - 
+            repo: server-ginga-ccws
+            docker: "oven/bun:latest"
+            command: bash -c "bun run build;mkdir dist;cp ccws dist"
+          - 
             name: 30fps
             repo: core-native-gba
             docker: "devkitpro/devkitarm:20240906"
