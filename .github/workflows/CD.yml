@@ -27,16 +27,16 @@ jobs:
             repo: gly-engine
             lua: true
             command: ./cli.sh cli-build
-          - 
-            name: cli-bundler
-            repo: gly-engine
-            lua: true
-            command: lua tools/cd_lua_bundler.lua
-          - 
-            name: bundler
-            repo: gly-engine
-            lua: true
-            command: ./cli.sh bundler src/lib/cli/bundler.lua
+          # - 
+          #   name: cli-bundler
+          #   repo: gly-engine
+          #   lua: true
+          #   command: lua tools/cd_lua_bundler.lua
+          # - 
+          #   name: bundler
+          #   repo: gly-engine
+          #   lua: true
+          #   command: ./cli.sh bundler src/lib/cli/bundler.lua
           - 
             repo: server-ginga-ccws
             docker: "oven/bun:latest"
@@ -55,9 +55,9 @@ jobs:
             repo: core-native-nds
             docker: "devkitpro/devkitarm:20240906"
             command: bash -c "cmake -Bbuild -H. -DTEMPLATE_SIZE=2048000 && make -C build && mv build/bin/game.nds dist/core-native-nds.nds"
-          - 
-            repo: core-native-ps1
-            command: cmake -Bbuild -H. -DGAME_BYTECODE=off && make -C build && mv build/game.elf dist/core-native-ps1.elf
+          # - 
+          #   repo: core-native-ps1
+          #   command: cmake -Bbuild -H. -DGAME_BYTECODE=off && make -C build && mv build/game.elf dist/core-native-ps1.elf
     steps:
       -
         uses: actions/checkout@v4
